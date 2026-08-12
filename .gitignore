@@ -1,0 +1,22 @@
+# Python Bytecode and Caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Hugging Face Model Cache (Local Cache Files)
+.cache/
+
+# Environment variables
+.env
+
+# IDE & OS Files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

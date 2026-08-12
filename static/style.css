@@ -1,0 +1,357 @@
+/*
+style.css
+
+Styles for the BharatVaani AI translation interface.
+
+The design is intentionally simple, accessible, and responsive.
+It uses native CSS custom properties (variables) for consistent colors,
+clean typography, and standard CSS flexbox/grid layouts.
+*/
+
+:root {
+    --primary-saffron: #e65100;
+    --primary-saffron-hover: #ef6c00;
+    --primary-blue: #1565c0;
+    --primary-blue-hover: #0d47a1;
+    
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+    --card-background: #1e293b;
+    --card-border: #334155;
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    
+    --accent-green: #10b981;
+    --accent-red: #ef4444;
+    --input-background: #0f172a;
+    
+    --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-devanagari: 'Noto Sans Devanagari', 'Outfit', sans-serif;
+    
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    
+    --transition-fast: 0.2s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-sans);
+    background: var(--bg-gradient);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+}
+
+/* Application Header */
+.app-header {
+    text-align: center;
+    padding: 2.5rem 1rem 1.5rem;
+}
+
+.header-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.app-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 0.5rem;
+}
+
+.highlight-orange {
+    color: #ff9800;
+}
+
+.highlight-blue {
+    color: #64b5f6;
+}
+
+.badge-ai {
+    font-size: 0.9rem;
+    background: linear-gradient(90deg, #ff9800, #2196f3);
+    color: #ffffff;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-sm);
+    vertical-align: super;
+    font-weight: 600;
+}
+
+.app-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Main Translation Container */
+.main-content {
+    flex: 1;
+    max-width: 1000px;
+    width: 92%;
+    margin: 0 auto 2.5rem;
+}
+
+.translator-container {
+    background: var(--card-background);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Language Controls Bar */
+.controls-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    background: var(--input-background);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.selector-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.field-label {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.direction-select {
+    background: var(--card-background);
+    color: var(--text-primary);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm);
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    font-family: var(--font-sans);
+    outline: none;
+    cursor: pointer;
+    transition: border-color var(--transition-fast);
+}
+
+.direction-select:focus {
+    border-color: #64b5f6;
+}
+
+.swap-button {
+    background: transparent;
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all var(--transition-fast);
+}
+
+.swap-button:hover {
+    background: #334155;
+    border-color: #64748b;
+}
+
+/* Workspace Grid (Side by side on desktop) */
+.workspace-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .workspace-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.input-section, .output-section {
+    display: flex;
+    flex-direction: column;
+    background: var(--input-background);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    padding: 1.2rem;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.panel-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detected-badge, .output-badge {
+    font-size: 0.8rem;
+    background: #334155;
+    color: #cbd5e1;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+}
+
+.text-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-family: var(--font-devanagari);
+    resize: vertical;
+    outline: none;
+    min-height: 140px;
+    line-height: 1.6;
+}
+
+.output-content {
+    min-height: 140px;
+    padding-top: 0.2rem;
+    font-size: 1.1rem;
+    font-family: var(--font-devanagari);
+    color: var(--text-primary);
+    word-break: break-word;
+}
+
+.placeholder-text {
+    color: var(--text-muted);
+    font-style: italic;
+    font-size: 1rem;
+}
+
+.panel-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.75rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.clear-button, .copy-button {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 0.85rem;
+    text-decoration: underline;
+    transition: color var(--transition-fast);
+}
+
+.clear-button:hover, .copy-button:hover {
+    color: var(--text-primary);
+}
+
+/* Action Button */
+.action-section {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.translate-button {
+    background: linear-gradient(135deg, var(--primary-saffron) 0%, #d84315 100%);
+    color: #ffffff;
+    border: none;
+    padding: 0.9rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(230, 81, 0, 0.4);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.translate-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 81, 0, 0.6);
+}
+
+.translate-button:active {
+    transform: translateY(0);
+}
+
+/* Sample Chips */
+.samples-section {
+    background: rgba(15, 23, 42, 0.6);
+    border-radius: var(--radius-md);
+    padding: 1.2rem;
+    border: 1px dashed var(--card-border);
+}
+
+.samples-title {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+}
+
+.sample-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.sample-chip {
+    background: var(--card-background);
+    color: var(--text-secondary);
+    border: 1px solid var(--card-border);
+    padding: 0.5rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-align: left;
+}
+
+.sample-chip:hover {
+    background: #334155;
+    color: var(--text-primary);
+    border-color: #64b5f6;
+}
+
+/* Footer */
+.app-footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    border-top: 1px solid var(--card-border);
+    background: rgba(15, 23, 42, 0.8);
+}
+
+.architecture-note {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-top: 0.3rem;
+}
+
+.hidden {
+    display: none;
+}

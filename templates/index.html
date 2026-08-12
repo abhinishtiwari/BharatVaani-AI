@@ -1,0 +1,139 @@
+<!--
+index.html
+
+Main user interface template for BharatVaani AI.
+
+This HTML document provides a simple, semantic web interface allowing users to:
+1. Enter Hindi or English text.
+2. Automatically detect language script.
+3. Choose translation direction (Hindi to English or English to Hindi).
+4. View translated results sent back from the Flask backend.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BharatVaani AI - Simple and Clear Open Source Neural Machine Translation for Hindi and English.">
+    <title>BharatVaani AI — Neural Hindi & English Translation</title>
+    
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+    <!-- Google Fonts for clean typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="header-container">
+            <h1 class="app-title">
+                <span class="highlight-orange">Bharat</span><span class="highlight-blue">Vaani</span> <span class="badge-ai">AI</span>
+            </h1>
+            <p class="app-subtitle">Simple, Clear & Transparent Neural Machine Translation for Indian Languages</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="translator-container">
+            
+            <!-- Controls Bar: Direction Selector & Swap -->
+            <div class="controls-section">
+                <div class="selector-group">
+                    <label for="translationDirection" class="field-label">Translation Direction:</label>
+                    <select id="translationDirection" class="direction-select">
+                        <option value="hi-en">Hindi (हिंदी) → English (अंग्रेज़ी)</option>
+                        <option value="en-hi">English (अंग्रेज़ी) → Hindi (हिंदी)</option>
+                    </select>
+                </div>
+
+                <button type="button" id="swapDirectionButton" class="swap-button" title="Swap Translation Direction">
+                    <span class="swap-icon">⇄</span> Swap Languages
+                </button>
+            </div>
+
+            <!-- Translation Workspace Split (Input vs Output) -->
+            <div class="workspace-grid">
+                
+                <!-- Input Box Panel -->
+                <div class="input-section">
+                    <div class="panel-header">
+                        <span class="panel-title">Source Text</span>
+                        <span id="detectedLanguageBadge" class="detected-badge">Auto-detecting script...</span>
+                    </div>
+                    
+                    <textarea 
+                        id="inputText" 
+                        class="text-input" 
+                        placeholder="Enter Hindi or English text here (e.g., नमस्ते, आप कैसे हैं?)..."
+                        maxlength="1000"
+                        rows="6"
+                    ></textarea>
+
+                    <div class="panel-footer">
+                        <span class="char-count"><span id="currentCharCount">0</span> / 1000 characters</span>
+                        <button type="button" id="clearTextButton" class="clear-button">Clear</button>
+                    </div>
+                </div>
+
+                <!-- Output Box Panel -->
+                <div class="output-section">
+                    <div class="panel-header">
+                        <span class="panel-title">Translated Output</span>
+                        <span id="outputLanguageBadge" class="output-badge">Target Result</span>
+                    </div>
+
+                    <div id="translationOutputContainer" class="output-content">
+                        <p id="translatedText" class="placeholder-text">Translation will appear here in real-time...</p>
+                    </div>
+
+                    <div class="panel-footer">
+                        <span id="statusIndicator" class="status-text">Ready</span>
+                        <button type="button" id="copyTextButton" class="copy-button">Copy Translation</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Translate Action Button -->
+            <div class="action-section">
+                <button type="button" id="translateButton" class="translate-button">
+                    <span class="button-text">Translate Now</span>
+                    <span class="button-spinner hidden" id="loadingSpinner"></span>
+                </button>
+            </div>
+
+            <!-- Educational Sample Phrases -->
+            <div class="samples-section">
+                <h3 class="samples-title">Try Quick Sample Sentences:</h3>
+                <div class="sample-chips">
+                    <button type="button" class="sample-chip" data-text="नमस्ते, भारतवाणी AI में आपका स्वागत है।" data-direction="hi-en">
+                        🇮🇳 "नमस्ते, भारतवाणी AI में आपका स्वागत है।" (Hi→En)
+                    </button>
+                    <button type="button" class="sample-chip" data-text="शिक्षा ही सफलता की सबसे बड़ी कुंजी है।" data-direction="hi-en">
+                        🇮🇳 "शिक्षा ही सफलता की सबसे बड़ी कुंजी है।" (Hi→En)
+                    </button>
+                    <button type="button" class="sample-chip" data-text="Artificial Intelligence helps us build a brighter future." data-direction="en-hi">
+                        🌐 "Artificial Intelligence helps us build a brighter future." (En→Hi)
+                    </button>
+                    <button type="button" class="sample-chip" data-text="Welcome to our open source machine translation engine." data-direction="en-hi">
+                        🌐 "Welcome to our open source machine translation engine." (En→Hi)
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="app-footer">
+        <p>BharatVaani AI — Built for learning, teaching, research, and open understanding.</p>
+        <p class="architecture-note">Architecture: HTML → JS → Flask → MarianMT PyTorch Transformers</p>
+    </footer>
+
+    <!-- Link to external JavaScript file -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
