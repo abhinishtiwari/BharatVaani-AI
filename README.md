@@ -104,20 +104,6 @@ It features a **Standard Hindi (शुद्ध हिंदी) Vocabulary Post
 
 ---
 
-## 📚 Viva & Educational Reading Order (Learning Mode)
-
-If you are studying, demonstrating, or presenting this project for an M.Tech viva, follow this recommended reading sequence:
-
-1. **[templates/index.html](file:///C:/Users/abhin/.gemini/antigravity/scratch/bharatvaani-ai/templates/index.html)** — Study DOM markup, text areas, direction dropdown, and action buttons.
-2. **[static/style.css](file:///C:/Users/abhin/.gemini/antigravity/scratch/bharatvaani-ai/static/style.css)** — Understand the CSS design system, dark mode variables (`:root`), and responsive flexbox grid layout.
-3. **[static/script.js](file:///C:/Users/abhin/.gemini/antigravity/scratch/bharatvaani-ai/static/script.js)** — Inspect JavaScript event handlers, async `fetch('/translate')` POST calls, and DOM rendering.
-4. **[app.py](file:///C:/Users/abhin/.gemini/antigravity/scratch/bharatvaani-ai/app.py)** — Learn how Flask handles WSGI request dispatching, input extraction, and REST JSON responses.
-5. **[text_processor.py](file:///C:/Users/abhin/.gemini/antigravity/scratch/bharatvaani-ai/text_processor.py)** — Examine Unicode NFKC normalization and character boundary validation.
-6. **[language_detector.py](file:///C:/Users/abhin/.gemini/antigravity/scratch/bharatvaani-ai/language_detector.py)** — Learn Unicode script boundary checks (`0x0900` to `0x097F` for Devanagari script).
-7. **[translator.py](file:///C:/Users/abhin/.gemini/antigravity/scratch/bharatvaani-ai/translator.py)** — Master MarianMT subword tokenization, PyTorch `torch.no_grad()` inference, and vocabulary post-processing.
-
----
-
 ## 💻 Installation & Local Setup
 
 ### Prerequisites
